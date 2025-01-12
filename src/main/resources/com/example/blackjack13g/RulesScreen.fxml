@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane minHeight="525.0" minWidth="740.0" style="-fx-background-image: url('file:src/main/resources/images/BackgroundGame.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blackjack13g.StartController">
+   <center>
+      <VBox spacing="20" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Label style="-fx-font-size: 24px; -fx-text-fill: white; -fx-font-family: 'Copperplate Gothic Bold';" text="Blackjack Rules" />
+            <Label fx:id="rulesLabel" wrapText="true" style="-fx-font-size: 16px; -fx-text-fill: white; -fx-font-family: 'Courier New';"
+                   maxWidth="425.0" />
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#goBackToMain" text="Back to Main Menu" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="Courier New" size="16.0" />
+         </font>
+      </Button>
+   </bottom>
+</BorderPane>

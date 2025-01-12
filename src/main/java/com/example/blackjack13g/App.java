@@ -16,7 +16,9 @@ public class App extends Application {
 
         stage.setTitle("Blackjack by 13G");
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setMinWidth(740);
+        stage.setMinHeight(525);
+        //stage.setFullScreen(true);
 
         stage.show();
     }
