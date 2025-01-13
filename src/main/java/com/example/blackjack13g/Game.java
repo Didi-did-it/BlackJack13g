@@ -6,6 +6,7 @@ public class Game {
     public static void main(String[] args) {
         playGame();
     }
+
     public static void playGame() {
         Player player = new Player();
         Dealer dealer = new Dealer();
@@ -23,46 +24,53 @@ public class Game {
             dealer.calculateHand();
 
             if (player.getHandValue() != 21) {
-                //players draws
-                while (player.getHandValue() <= 21) {
-                    System.out.println("add or fold");
-                    if (sc.nextLine().equals("add")) {
-                        player.addCard(deck.draw());
-                    } else {
-                        //dealer draws
-                        // <--- hier methode zum aufdecken
-                        while (dealer.getHandValue() < 17) {
-                            dealer.addCard(deck.draw());
-                            dealer.calculateHand();
-                        }
 
-                        if (dealer.getHandValue() > 21) {
-                            dealer.loseHP();
-                        } else if (dealer.getHandValue() < player.getHandValue()) {
-                            dealer.loseHP();
-                        } else {
-                            player.loseHP();
-                        }
-                        break;
-                    }
-                    player.calculateHand();
-                }
-
-                if (player.getHandValue() > 21) {
+                if (dealer.getHandValue() == 21) {
                     player.loseHP();
-                }
-
-                if (player.getHealth() == 0) {
-                    System.out.println("You died!");
-                    return;
-                }
-                if (dealer.getHealth() == 0) {
-                    System.out.println("You survived!");
-                    return;
                 } else {
-                    dealer.loseHP();
+                    //players draws
+                    while (player.getHandValue() <= 21) {
+                        System.out.println("add or fold");
+                        if (sc.nextLine().equals("add")) {
+                            player.addCard(deck.draw());
+                        } else {
+                            //dealer draws
+                            // <--- hier methode zum aufdecken
+                            while (dealer.getHandValue() < 17) {
+                                dealer.addCard(deck.draw());
+                                dealer.calculateHand();
+                            }
+
+                            if (dealer.getHandValue() > 21) {
+                                dealer.loseHP();
+                            } else if (dealer.getHandValue() < player.getHandValue()) {
+                                dealer.loseHP();
+                            } else {
+                                player.loseHP();
+                            }
+                            break;
+                        }
+                        player.calculateHand();
+                    }
+
+                    if (player.getHandValue() > 21) {
+                        player.loseHP();
+                    }
                 }
+            } else {
+                dealer.loseHP();
             }
+
+            if (player.getHealth() == 0) {
+                System.out.println("You died!");
+                return;
+            }
+            if (dealer.getHealth() == 0) {
+                System.out.println("You survived!");
+                return;
+            }
+
         }
     }
 }
+
