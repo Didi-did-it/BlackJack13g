@@ -8,7 +8,7 @@ public class Player {
     private ArrayList<Card> hand = new ArrayList<>();
 
     public Player() {
-        health = 5;
+        health = 3;
         handValue = 0;
     }
 
@@ -36,7 +36,7 @@ public class Player {
         health--;
     }
 
-    public void calculateScore() {
+    public void calculateHand() {
         handValue = 0;
         int aceCount = 0;
         if (!hand.isEmpty()) {
@@ -53,8 +53,8 @@ public class Player {
                 }
             }
 
-            while (handValue <= 21 && aceCount > 0) {
-                handValue -= 10;
+            while (handValue > 21 && aceCount > 0) {
+                handValue =- 10;
                 aceCount--;
             }
         }
