@@ -54,7 +54,7 @@ public class Player {
             }
 
             while (handValue > 21 && aceCount > 0) {
-                handValue =- 10;
+                handValue -= 10;
                 aceCount--;
             }
         }
