@@ -46,7 +46,7 @@ public class StartController {
             
             Good luck! Stay alive!
             """;
-
+    //Method for Rules Button Click
     public void showRulesScreen() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RulesScreen.fxml"));
@@ -61,14 +61,14 @@ public class StartController {
             stage.setMinHeight(525);
 */
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error loading RulesScreen.fxml",e);
         }
     }
-
+    //Method for Exit Button Click
     public void exitApplication() {
         System.exit(0);
     }
-
+    //Method to go Back to Main Menu from Rules Screen
     public void goBackToMain() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
@@ -83,12 +83,12 @@ public class StartController {
             stage.setMinHeight(525);
             */
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error loading StartScene.fxml",e);
         }
     }
 
     public void startGame() {}
-
+    //Set Text for Rules Screen
     @FXML
     public void initialize() {
         if (rulesLabel != null) {
