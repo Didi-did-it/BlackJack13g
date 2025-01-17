@@ -17,7 +17,7 @@
    <center>
       <VBox alignment="CENTER" spacing="10.0">
          <children>
-            <Button fx:id="startButton" alignment="CENTER" cache="true" minHeight="20.0" minWidth="120.0" mnemonicParsing="false" text="Game Start">
+            <Button fx:id="startButton" alignment="CENTER" cache="true" minHeight="20.0" minWidth="120.0" mnemonicParsing="false" text="Game Start" onAction="#goToGameBoard">
                <font>
                   <Font name="Courier New" size="16.0" />
                </font>

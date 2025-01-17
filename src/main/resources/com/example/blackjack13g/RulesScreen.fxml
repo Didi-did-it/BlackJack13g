@@ -18,7 +18,7 @@
          </BorderPane.margin>
          <children>
             <Label style="-fx-font-size: 38px; -fx-text-fill: white; -fx-font-family: 'Copperplate Gothic Bold';" text="Blackjack Rules" />
-            <Label fx:id="rulesLabel" maxWidth="425.0" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-font-family: 'Courier New';" wrapText="true" />
+            <Label fx:id="rulesLabel" maxWidth="425.0" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-font-family: 'Bookman Old Style';" wrapText="true" />
          </children>
       </VBox>
    </center>

@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 public class Game {
     public static void main(String[] args) {
-        playGame();
+        playGame(new Player(),new Dealer());
     }
 
-    public static void playGame() {
-        Player player = new Player();
-        Dealer dealer = new Dealer();
+    public static void playGame(Player player, Dealer dealer) {
         Deck deck = new Deck();
         Scanner sc = new Scanner(System.in);
 

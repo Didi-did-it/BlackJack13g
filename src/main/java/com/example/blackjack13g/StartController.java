@@ -12,9 +12,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StartController {
-    public Button startButton;
-    public Button rulesButton;
-    public Button exitButton;
 
     //Scene Control
     @FXML
@@ -26,6 +23,12 @@ public class StartController {
 
     @FXML
     private Label rulesLabel;
+    @FXML
+    private Button startButton;
+    @FXML
+    private Button rulesButton;
+
+
 
     //Define Rules for Text Area
     private static final String RULES = """
@@ -56,10 +59,10 @@ public class StartController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-/*
-            stage.setMinWidth(740);
-            stage.setMinHeight(525);
-*/
+
+            stage.setMinWidth(1280);
+            stage.setMinHeight(720);
+
         } catch (IOException e) {
             throw new RuntimeException("Error loading RulesScreen.fxml",e);
         }
@@ -78,16 +81,36 @@ public class StartController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-/*
-            stage.setMinWidth(740);
-            stage.setMinHeight(525);
-            */
+
+            stage.setMinWidth(1280);
+            stage.setMinHeight(720);
+
         } catch (IOException e) {
             throw new RuntimeException("Error loading StartScene.fxml",e);
         }
     }
+    //Method for StartGame on ButtonClick to GameBoard
+    public void goToGameBoard() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
+            Parent root = fxmlLoader.load();
 
-    public void startGame() {}
+            GameController gamecontroller = fxmlLoader.getController();
+
+            Player player = new Player();
+            Dealer dealer = new Dealer();
+
+            Stage stage = (Stage) startButton.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+
+            stage.setMinWidth(1280);
+            stage.setMinHeight(720);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading GameBoard.fxml",e);
+        }
+    }
     //Set Text for Rules Screen
     @FXML
     public void initialize() {

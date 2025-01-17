@@ -5,6 +5,8 @@ public class Dealer extends Player {
         getHand().add(card);
     }
 
+
+
     public void showHiddenCard(){
 
     }
