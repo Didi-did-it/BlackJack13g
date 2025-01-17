@@ -56,18 +56,17 @@ public class StartController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-
+/*
             stage.setMinWidth(740);
             stage.setMinHeight(525);
-
+*/
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void exitApplication() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        System.exit(0);
     }
 
     public void goBackToMain() {
@@ -79,13 +78,16 @@ public class StartController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-
+/*
             stage.setMinWidth(740);
             stage.setMinHeight(525);
+            */
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void startGame() {}
 
     @FXML
     public void initialize() {
