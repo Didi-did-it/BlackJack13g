@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class GameController {
     private Player player = new Player();
@@ -28,6 +31,10 @@ public class GameController {
     private Label dealerCardValue;
     @FXML
     private HBox buttonContainer;
+    @FXML
+    private HBox playerCardsContainer;
+    @FXML
+    private HBox dealerCardsContainer;
 
 
     //Method for Main Button Click
@@ -74,7 +81,7 @@ public class GameController {
                 "-fx-font-family:'Courier New';"+
                 "-fx-font-size: 16px;"
         );
-        //hitButton.setOnAction(event -> handleHit());
+        hitButton.setOnAction(event -> handleHit());
 
         Button standButton = new Button("Stand");
         standButton.setPrefHeight(20);
@@ -83,7 +90,7 @@ public class GameController {
                 "-fx-font-family:'Courier New';"+
                 "-fx-font-size: 16px;"
         );
-        //standButton.setOnAction(event -> handleHit());
+        standButton.setOnAction(event -> handleStand());
 
         buttonContainer.getChildren().addAll(hitButton, standButton);
     }
@@ -92,12 +99,132 @@ public class GameController {
         buttonContainer.getChildren().clear();
     }
 
+    public void handleHit(){
+        player.addCard(deck.draw());
+        player.calculateHand();
+        updateCardValues();
+
+
+
+        if (player.getHandValue() > 21) {
+            player.loseHP();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            checkGameOver();
+        }
+        showButtons();
+    }
+
+    public void handleStand(){
+        while (dealer.getHandValue() < 17) {
+            dealer.addCard(deck.draw());
+            dealer.calculateHand();
+        }
+
+        updateCardValues();
+
+
+        if (dealer.getHandValue() > 21 || dealer.getHandValue() < player.getHandValue()) {
+            dealer.loseHP();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            checkGameOver();
+        } else if (dealer.getHandValue() == player.getHandValue()) {
+            dealer.loseHP();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            checkGameOver();
+        } else {
+            player.loseHP();
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            checkGameOver();
+        }
+    }
+
+    public void runGame(){
+        player.clearHand();
+        dealer.clearHand();
+
+        player.addCard(deck.draw());
+        dealer.addCard(deck.draw());
+        player.addCard(deck.draw());
+        dealer.hiddenCard(deck.draw());
+        player.calculateHand();
+        dealer.calculateHand();
+
+        updateCardValues();
+
+        if (player.getHandValue() ==  21) {
+            dealer.loseHP();
+            checkGameOver();
+        } else if (dealer.getHandValue() == 21) {
+            player.loseHP();
+            checkGameOver();
+        } else {
+            showButtons();
+        }
+    }
+
+    public void updateCardValues(){
+        playerCardValue.setText(String.valueOf(player.getHandValue()));
+        dealerCardValue.setText(String.valueOf(dealer.getHandValue()));
+        visualizeCards();
+    }
+
+    public void visualizeCards(){
+        playerCardsContainer.getChildren().clear();
+        dealerCardsContainer.getChildren().clear();
+
+        for (Card card : player.getHand()){
+            ImageView cardImage = new ImageView(new Image(getClass().getResourceAsStream(card.getImage())));
+            cardImage.setFitWidth(90);
+            cardImage.setPreserveRatio(true);
+            playerCardsContainer.getChildren().add(cardImage);
+        }
+
+        for (Card card : dealer.getHand()){
+            ImageView cardImage = new ImageView(new Image(getClass().getResourceAsStream(card.getImage())));
+            cardImage.setFitWidth(90);
+            cardImage.setPreserveRatio(true);
+            dealerCardsContainer.getChildren().add(cardImage);
+        }
+    }
+
+    public void checkGameOver(){
+        showHP();
+        hideButtons();
+
+        if (player.getHealth() == 0) {
+            player.setHealth(3);
+            dealer.setHealth(3);
+            System.out.print("You died!");
+        } else if (dealer.getHealth() == 0) {
+            player.setHealth(3);
+            dealer.setHealth(3);
+            System.out.print("You survived!");
+        } else {
+            runGame();
+        }
+    }
+
+
+
     public void initialize() {
-        if (player != null) {
-            showHP();
-        }
-        if (dealer != null) {
-            showHP();
-        }
+        showHP();
+        deck.shuffle();
+        runGame();
     }
 }

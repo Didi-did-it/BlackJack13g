@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane minHeight="720.0" minWidth="1280.0" style="-fx-background-image: url('file:src/main/resources/images/BackgroundGame.png');                    -fx-background-size: cover;                    -fx-background-repeat: no-repeat;                    -fx-background-position: center;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blackjack13g.GameController">
@@ -51,21 +50,21 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Label text="Dealer" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " />
-                  <HBox fx:id="dealerHand" />
-                  <Label fx:id="dealerCardValue" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; "/>
+                  <Label style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " text="Dealer" />
+                  <HBox fx:id="dealerCardsContainer" alignment="CENTER" spacing="5.0" />
+                  <Label fx:id="dealerCardValue" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Label text="Player" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " />
-                  <HBox fx:id="playerHand" />
-                  <Label fx:id="playerCardValue" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; "/>
+                  <Label style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " text="Player" />
+                  <HBox fx:id="playerCardsContainer" alignment="CENTER" spacing="5.0" />
+                  <Label fx:id="playerCardValue" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " />
                </children>
             </VBox>
-            <HBox fx:id="buttonContainer" prefHeight="100.0" prefWidth="200.0" />
+            <HBox fx:id="buttonContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20" />
          </children>
       </VBox>
    </center>
