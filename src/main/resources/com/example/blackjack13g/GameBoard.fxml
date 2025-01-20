@@ -63,6 +63,9 @@
                   <HBox fx:id="playerCardsContainer" alignment="CENTER" spacing="5.0" />
                   <Label fx:id="playerCardValue" style="-fx-font-family: 'Bookman Old Style'; -fx-font-size: 32px; -fx-text-fill: white; " />
                </children>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
             </VBox>
             <HBox fx:id="buttonContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20" />
          </children>
