@@ -13,8 +13,10 @@ public class Deck {
     public Deck() {
         // 2 - 10 are the number cards, 11 - 13 Jack to King, and 14 is Ace
         int[] values = new int[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
-        //Assigns each card with the correct image
-        // image assignment based on this code | https://stackoverflow.com/questions/29109957/how-to-set-an-image-using-a-hash-map last visit: 18.01.2025
+        /*
+        *Assigns each card with the correct image
+        * image assignment based on this code | https://stackoverflow.com/questions/29109957/how-to-set-an-image-using-a-hash-map last visit: 18.01.2025
+        */
         cardMap.put(2, "/images/cards/2-S.png");
         cardMap.put(3, "/images/cards/3-S.png");
         cardMap.put(4, "/images/cards/4-S.png");
