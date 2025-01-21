@@ -221,6 +221,7 @@ public class GameController {
         showHP();
         hideButtons();
         dealer.getHand().get(1).unhide();
+        dealerCardValue.setText(String.valueOf(dealer.getHandValue()));
         dealerVisualizeCards();
 
         if (player.getHealth() == 0) {
