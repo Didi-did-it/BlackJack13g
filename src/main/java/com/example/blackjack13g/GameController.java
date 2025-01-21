@@ -157,7 +157,6 @@ public class GameController {
         dealerCardsContainer.getChildren().clear();
 
         for (Card card : dealer.getHand()){
-            System.out.println(card);
             ImageView cardImage = new ImageView(new Image(getClass().getResourceAsStream(card.getImage())));
             cardImage.setFitWidth(120);
             cardImage.setPreserveRatio(true);
