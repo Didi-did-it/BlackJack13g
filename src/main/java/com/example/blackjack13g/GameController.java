@@ -204,11 +204,13 @@ public class GameController {
 
         pause.setOnFinished(event -> {
             showButtons();
-            if (player.getHandValue() ==  21) {
-                dealer.loseHP();
+            if (player.getHandValue() ==  21 && dealer.getHandValue() == 21) {
                 endRound();
             } else if (dealer.getHandValue() == 21) {
                 player.loseHP();
+                endRound();
+            } else {
+                dealer.loseHP();
                 endRound();
             }
         });
