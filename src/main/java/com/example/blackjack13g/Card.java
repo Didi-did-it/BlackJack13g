@@ -1,13 +1,13 @@
 package com.example.blackjack13g;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Card {
     private int value;
     private String image;
+    private String backImage = "/images/cards/BACK.png";
+    private boolean hidden;
 
-    public Card(int value) {
+    public Card(int value, boolean hidden) {
+        this.hidden = hidden;
         this.value = value;
         switch (value) {
             case 2 -> image = "/images/cards/2-S.png";
@@ -27,11 +27,18 @@ public class Card {
     }
 
     public String getImage() {
+        if (hidden) {
+            return backImage;
+        }
         return image;
     }
 
-    public void getBackCover(){
 
+    public void hide() {
+        hidden = true;
+    }
+    public void unhide() {
+        hidden = false;
     }
 
     public int getValue() {

@@ -6,20 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class StartController {
-
-    //Scene Control
-    @FXML
-    private Stage stage;
-    @FXML
-    private Scene scene;
-    @FXML
-    private Parent root;
 
     @FXML
     private Label rulesLabel;
@@ -94,11 +85,6 @@ public class StartController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
             Parent root = fxmlLoader.load();
-
-            GameController gamecontroller = fxmlLoader.getController();
-
-            Player player = new Player();
-            Dealer dealer = new Dealer();
 
             Stage stage = (Stage) startButton.getScene().getWindow();
 

@@ -1,13 +1,15 @@
 package com.example.blackjack13g;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private int handValue;
     private  int health;
-    private ArrayList<Card> hand = new ArrayList<>();
+    private final List<Card> hand;
 
     public Player() {
+        hand = new ArrayList<>();
         health = 3;
         handValue = 0;
     }
@@ -23,7 +25,7 @@ public class Player {
         return handValue;
     }
 
-    public ArrayList<Card> getHand() {
+    public List<Card> getHand() {
         return hand;
     }
 
