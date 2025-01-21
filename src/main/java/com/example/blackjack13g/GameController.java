@@ -169,7 +169,9 @@ public class GameController {
         dealer.getHand().get(1).unhide();
         dealerVisualizeCards();
 
-        dealerDraw(false, 0, true);
+        if (dealer.getHandValue() < 17) {
+            dealerDraw(false, 0, true);
+        }
 
 
         if (dealer.getHandValue() > 21 || dealer.getHandValue() < player.getHandValue()) {
