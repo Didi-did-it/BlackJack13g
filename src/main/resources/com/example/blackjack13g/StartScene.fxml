@@ -38,7 +38,7 @@
    <top>
       <Label alignment="TOP_CENTER" text="BlackJack" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
-            <Font name="Copperplate Gothic Bold" size="50.0" />
+            <Font name="Copperplate Gothic Bold" size="65.0" />
          </font>
          <BorderPane.margin>
             <Insets top="50.0" />

@@ -5,21 +5,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
-
+import java.util.Optional;
 
 
 public class GameController {
     private Player player = new Player();
     private Player dealer = new Player();
-    private Deck deck = new Deck();
+    private Deck deck;
 
     @FXML
     private Button mainButton;
@@ -148,7 +147,7 @@ public class GameController {
 
         for (Card card : player.getHand()){
             ImageView cardImage = new ImageView(new Image(getClass().getResourceAsStream(card.getImage())));
-            cardImage.setFitWidth(90);
+            cardImage.setFitWidth(120);
             cardImage.setPreserveRatio(true);
             playerCardsContainer.getChildren().add(cardImage);
         }
@@ -160,7 +159,7 @@ public class GameController {
         for (Card card : dealer.getHand()){
             System.out.println(card);
             ImageView cardImage = new ImageView(new Image(getClass().getResourceAsStream(card.getImage())));
-            cardImage.setFitWidth(90);
+            cardImage.setFitWidth(120);
             cardImage.setPreserveRatio(true);
             dealerCardsContainer.getChildren().add(cardImage);
         }
@@ -170,15 +169,13 @@ public class GameController {
         dealer.getHand().get(1).unhide();
         dealerVisualizeCards();
 
-        while (dealer.getHandValue() < 17) {
-            dealerDraw(false, 0, true);
-        }
+        dealerDraw(false, 0, true);
+
 
         if (dealer.getHandValue() > 21 || dealer.getHandValue() < player.getHandValue()) {
             dealer.loseHP();
             endRound();
         } else if (dealer.getHandValue() == player.getHandValue()) {
-            dealer.loseHP();
             endRound();
         } else {
             player.loseHP();
@@ -188,6 +185,7 @@ public class GameController {
 
     public void runGame(){
         dealerCardValue.setText("");
+        playerCardValue.setText("");
         player.clearHand();
         dealer.clearHand();
         dealerVisualizeCards();
@@ -227,9 +225,11 @@ public class GameController {
         if (player.getHealth() == 0) {
             player.setHealth(3);
             dealer.setHealth(3);
+            gameEndAlert("You died!");
         } else if (dealer.getHealth() == 0) {
             player.setHealth(3);
             dealer.setHealth(3);
+            gameEndAlert("You survived!");
         } else {
             PauseTransition pause = new PauseTransition(Duration.millis(3500));
 
@@ -241,10 +241,36 @@ public class GameController {
         }
     }
 
+    public void gameEndAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.NONE);
+
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.setResizable(false);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle("-fx-alignment: center; -fx-font-size: 18px;");
+        dialogPane.lookup(".content.label").setStyle("-fx-text-alignment: center; -fx-alignment: center;");
+
+        ButtonType againButton = new ButtonType("Play Again", ButtonBar.ButtonData.OK_DONE);
+        ButtonType mainButton = new ButtonType("Main Menu", ButtonBar.ButtonData.OK_DONE);
+        ButtonType exitButton = new ButtonType("Exit", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(againButton, exitButton, mainButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == exitButton) {
+            System.exit(0);
+        } else if (result.isPresent() && result.get() == mainButton){
+            goBackToMain();
+        } else {
+            initialize();
+        }
+    }
 
     public void initialize() {
         showHP();
-        deck.shuffle();
+        deck  = new Deck();
         runGame();
     }
 }
