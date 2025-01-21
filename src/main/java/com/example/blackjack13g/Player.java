@@ -41,6 +41,7 @@ public class Player {
         health--;
     }
 
+    //calculates the value of the hand, considers ace's aswell
     public void calculateHand() {
         handValue = 0;
         int aceCount = 0;

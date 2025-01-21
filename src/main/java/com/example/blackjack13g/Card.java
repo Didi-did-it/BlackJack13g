@@ -9,6 +9,7 @@ public class Card {
     public Card(int value, boolean hidden) {
         this.hidden = hidden;
         this.value = value;
+        //this switch chooses the image card based on the value of the card
         switch (value) {
             case 2 -> image = "/images/cards/2.png";
             case 3 -> image = "/images/cards/3.png";
@@ -26,6 +27,10 @@ public class Card {
         }
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public String getImage() {
         if (hidden) {
             return backImage;
@@ -33,16 +38,13 @@ public class Card {
         return image;
     }
 
-
+    //methods used to swap the hidden boolean
     public void hide() {
         hidden = true;
     }
+
     public void unhide() {
         hidden = false;
-    }
-
-    public int getValue() {
-        return value;
     }
 }
 
