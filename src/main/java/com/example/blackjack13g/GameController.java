@@ -209,7 +209,7 @@ public class GameController {
             } else if (dealer.getHandValue() == 21) {
                 player.loseHP();
                 endRound();
-            } else {
+            } else if (player.getHandValue() == 21){
                 dealer.loseHP();
                 endRound();
             }
