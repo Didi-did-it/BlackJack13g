@@ -124,9 +124,9 @@ public class GameController {
 
             dealerVisualizeCards();
             //this is for when the dealer draws after a stand, this will make sure he keeps drawing till he is 17 or higher
-            if(stand && dealer.getHandValue() < 17){
-                dealerDraw(false, 1000, true);
-            }
+            //if(stand && dealer.getHandValue() < 17){
+            //    dealerDraw(false, 1000, true);
+            //}
         });
 
         pause.play();
@@ -171,7 +171,7 @@ public class GameController {
             dealer.setHealth(3);
             gameEndAlert("You survived!");
         } else {
-            PauseTransition pause = new PauseTransition(Duration.millis(3500));
+            PauseTransition pause = new PauseTransition(Duration.millis(6000));
 
             pause.setOnFinished(event -> {
                 runGame();
@@ -196,7 +196,7 @@ public class GameController {
         dealer.getHand().get(1).unhide();
         dealerVisualizeCards();
 
-        if (dealer.getHandValue() < 17) {
+        while (dealer.getHandValue() < 17) {
             dealerDraw(false, 0, true);
         }
 
@@ -209,6 +209,7 @@ public class GameController {
             player.loseHP();
             endRound();
         }
+
     }
 
     public void hideButtons(){
